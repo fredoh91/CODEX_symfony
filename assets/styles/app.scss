@@ -1,0 +1,12 @@
+// body {
+//     background-color: lightgray;
+// }
+
+@use "sass:color";
+@use "sass:math";
+
+// Import Bootstrap first
+@use "bootstrap/scss/bootstrap" as *;
+
+// Then override variables
+$primary: color.adjust(#428bca, $lightness: -20%);

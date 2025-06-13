@@ -1,0 +1,230 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+	{{ encore_entry_link_tags('artdeco') }}
+    <div class="container">
+        {# <button class="btn btn-primary my-3">Test Bootstrap 5</button> #}
+
+        <h1 class="mb-4 artdeco-title">Catalogue de graphiques avec Symfony UX Chart.js</h1>
+
+        {# <div class="alert alert-success" role="alert">
+            Ceci est une alerte Bootstrap 5 – si elle est verte, Bootstrap fonctionne !
+        </div> #}
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Graphique en ligne</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(lineChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Graphique en barres</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(barChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Graphique en camembert</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(pieChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Graphique en anneau</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(doughnutChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Graphique radar</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(radarChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Graphique polaire</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(polarAreaChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Barres empilées</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(stackedBarChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Ligne avec annotations</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(annotatedLineChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Barres horizontales</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(horizontalBarChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Graphique en bulles</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(bubbleChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Ligne avec gradient</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(gradientLineChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Échelle logarithmique</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(logarithmicChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Anneau avec pourcentages</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(percentageChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Zones de performance</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(performanceChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Échelle de temps</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(timeChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Métriques multiples</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(metricsChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Progression</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(progressChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Camembert éclaté</h2>
+                        <div style="height: 300px;">
+                            {{ render_chart(explodedChart) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

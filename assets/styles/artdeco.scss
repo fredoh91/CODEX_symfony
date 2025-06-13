@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+
+// .artdeco-title {
+//   font-family: 'Unica One', 'Bebas Neue', 'Josefin Sans', Arial, sans-serif;
+//   font-size: 2.8rem;
+//   letter-spacing: 0.15em;
+//   color: #2d2926;
+//   text-transform: uppercase;
+//   text-shadow: 2px 2px 0 #e0c68d, 4px 4px 0 #bfa76f;
+//   border-bottom: 4px double #e0c68d;
+//   display: inline-block;
+//   padding-bottom: 0.3em;
+//   margin-bottom: 1em;
+//   background: linear-gradient(90deg, #e0c68d 0%, #fffbe6 100%);
+//   -webkit-background-clip: text;
+//   -webkit-text-fill-color: transparent;
+// }
+
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+.artdeco-title {
+  font-family: 'Limelight', cursive, sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.18em;
+  color: #222;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 1.5em 0 1em 0;
+  position: relative;
+  padding: 0.4em 0.8em;
+
+  /* Effet Art Déco avec lignes dorées */
+  &::before, &::after {
+    content: "";
+    display: block;
+    height: 4px;
+    width: 60px;
+    background: linear-gradient(90deg, #e0c68d 0%, #fffbe6 100%);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+  }
+  &::before {
+    top: -18px;
+  }
+  &::after {
+    bottom: -18px;
+  }
+}

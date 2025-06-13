@@ -1,5 +1,15 @@
 {
     "controllers": {
+        "@symfony/ux-chartjs": {
+            "chart": {
+                "main": "controllers/chart_controller.js",
+                "fetch": "eager",
+                "enabled": true,
+                "autoimport": {
+                    "chartjs-adapter-date-fns": "auto"
+                }
+            }
+        },
         "@symfony/ux-turbo": {
             "turbo-core": {
                 "enabled": true,
