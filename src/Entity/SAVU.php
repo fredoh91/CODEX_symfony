@@ -6,8 +6,15 @@ namespace App\Entity;
 // use App\Codex\Repository\SAVURepository;
 use App\Repository\SAVURepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Index;
 
 #[ORM\Entity(repositoryClass: SAVURepository::class)]
+#[Index(name: "idx_code_vu", fields: ["codeVU"])]
+#[Index(name: "idx_code_cis", fields: ["codeCIS"])]
+#[Index(name: "idx_nom_vu", fields: ["nomVU"])]
+#[Index(name: "idx_lib_rech_denomination", fields: ["libRechDenomination"])]
+#[Index(name: "idx_nom_substance", fields: ["nomSubstance"])]
+#[Index(name: "idx_lib_rech_substance", fields: ["libRechSubstance"])]
 class SAVU
 {
     #[ORM\Id]
@@ -62,6 +69,12 @@ class SAVU
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $libFormePH = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $libRechSubstance = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $libRechDenomination = null;
 
     public function getId(): ?int
     {
@@ -256,6 +269,30 @@ class SAVU
     public function setLibFormePH(?string $libFormePH): static
     {
         $this->libFormePH = $libFormePH;
+
+        return $this;
+    }
+
+    public function getLibRechSubstance(): ?string
+    {
+        return $this->libRechSubstance;
+    }
+
+    public function setLibRechSubstance(?string $libRechSubstance): static
+    {
+        $this->libRechSubstance = $libRechSubstance;
+
+        return $this;
+    }
+
+    public function getLibRechDenomination(): ?string
+    {
+        return $this->libRechDenomination;
+    }
+
+    public function setLibRechDenomination(?string $libRechDenomination): static
+    {
+        $this->libRechDenomination = $libRechDenomination;
 
         return $this;
     }

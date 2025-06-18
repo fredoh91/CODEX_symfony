@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche Laboratoire{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            {{ form_start(form) }}
+                <div class="mb-3">
+                    {{ form_label(form.dci, null, {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.dci, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.dci) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.denomination, null, {'label_attr': {'class': 'form-label'}}) }}
+                    {{ form_widget(form.denomination, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors(form.denomination) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_widget(form.recherche, {'attr': {'class': 'btn btn-primary'}}) }}
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

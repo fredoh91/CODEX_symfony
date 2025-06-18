@@ -6,8 +6,14 @@ namespace App\Entity;
 // use App\Codex\Repository\VUUtilRepository;
 use App\Repository\VUUtilRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Index;
 
 #[ORM\Entity(repositoryClass: VUUtilRepository::class)]
+#[Index(name: "idx_code_vu", fields: ["codeVU"])]
+#[Index(name: "idx_code_cis", fields: ["codeCIS"])]
+#[Index(name: "idx_nom_vu", fields: ["nomVU"])]
+#[Index(name: "idx_lib_rech_denomination", fields: ["libRechDenomination"])]
+
 class VUUtil
 {
     #[ORM\Id]
@@ -107,6 +113,9 @@ class VUUtil
 
     #[ORM\Column(type: 'string', length: 9, nullable: true)]
     private ?string $codeProduit = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $libRechDenomination = null;
 
     public function getId(): ?int
     {
@@ -481,6 +490,18 @@ class VUUtil
     public function setCodeProduit(?string $codeProduit): self
     {
         $this->codeProduit = $codeProduit;
+
+        return $this;
+    }
+
+    public function getLibRechDenomination(): ?string
+    {
+        return $this->libRechDenomination;
+    }
+
+    public function setLibRechDenomination(?string $libRechDenomination): static
+    {
+        $this->libRechDenomination = $libRechDenomination;
 
         return $this;
     }
