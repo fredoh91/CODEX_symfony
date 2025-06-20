@@ -28,7 +28,7 @@ class RechLaboTypeForm extends AbstractType
         $resolver->setDefaults([
             // Configure your form options ici
             'attr' => [
-                'data-turbo' => 'true',
+                'data-turbo' => 'false',
                 'class' => 'needs-validation',
                 'novalidate' => 'novalidate',
             ],

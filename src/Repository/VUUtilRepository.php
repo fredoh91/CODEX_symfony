@@ -59,6 +59,145 @@ class VUUtilRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    /**
+     * Permet de faire une recherche par Dénomination ou par Substance sur les champs libRech
+     *
+     * @param [type] $deno
+     * @param [type] $sub
+     * @return array
+     */
+    public function findByDenoOrBySub($sub, $deno): array
+    {
+        // Fonction de normalisation des paramètres
+        $normalize = function ($str) {
+            $str = mb_strtoupper($str ?? '', 'UTF-8');
+            $str = iconv('UTF-8', 'ASCII//TRANSLIT', $str); // retire les accents
+            $str = preg_replace('/\s+/', '', $str); // retire les espaces
+            return $str;
+        };
+
+        $denoNorm = $normalize($deno);
+        $subNorm = $normalize($sub);
+        /* Nom du titulaire */
+        /* Nom du laboratoire */
+
+        $qb = $this->createQueryBuilder('vu')
+            ->select('vu.nomVU, 
+                        vu.dbo_Autorisation_libAbr, 
+                        vu.dbo_ClasseATC_libAbr, 
+                        vu.dbo_ClasseATC_libCourt, 
+                        vu.dbo_StatutSpeci_libAbr, 
+                        sa.nomSubstance, 
+                        vu.codeVU, 
+                        vu.codeCIS, 
+                        vu.codeDossier, 
+                        vu.nomContactLibra,
+                        vu.adresseContact, 
+                        vu.adresseCompl, 
+                        vu.codePost, 
+                        vu.nomVille, 
+                        vu.telContact, 
+                        vu.faxContact, 
+                        vu.nomActeurLong,
+                        vu.adresse, 
+                        vu.adresseComplExpl, 
+                        vu.codePostExpl, 
+                        vu.nomVilleExpl, 
+                        vu.tel, 
+                        vu.fax, 
+                        vu.codeContact, 
+                        vu.codeActeur, 
+                        vu.libRechDenomination, 
+                        sa.libRechSubstance')
+            ->distinct()
+            ->innerJoin('App\Entity\SAVU', 'sa', 'WITH', 'vu.codeVU = sa.codeVU')
+            ->where('vu.dbo_StatutSpeci_libAbr = :statut')
+            ->setParameter('statut', 'Actif')
+            ->orderBy('vu.nomVU', 'ASC');
+
+        if ($denoNorm) {
+            $qb->andWhere('vu.libRechDenomination LIKE :deno')
+                ->setParameter('deno', '%' . $denoNorm . '%');
+        }
+
+        if ($subNorm) {
+            // Sous-requête pour le IN
+            $subQb = $this->getEntityManager()->createQueryBuilder()
+                ->select('DISTINCT sa2.codeVU')
+                ->from('App\Entity\SAVU', 'sa2')
+                ->where('sa2.libRechSubstance LIKE :sub');
+            $qb->andWhere($qb->expr()->in('vu.codeVU', $subQb->getDQL()))
+                ->setParameter('sub', '%' . $subNorm . '%');
+        }
+
+
+        // dump($qb->getQuery()->getDQL());
+        // dump($qb->getQuery()->getSQL());
+
+        return $qb->getQuery()->getResult();
+    }
+
+    
+
+    /**
+     * Permet de faire une recherche par Dénomination ou par Substance sur les champs libRech
+     *
+     * @param [type] $deno
+     * @param [type] $sub
+     * @return array
+     */
+    public function findByDenoOrBySubCourt($sub, $deno): array
+    {
+        // Fonction de normalisation des paramètres
+        $normalize = function ($str) {
+            $str = mb_strtoupper($str ?? '', 'UTF-8');
+            $str = iconv('UTF-8', 'ASCII//TRANSLIT', $str); // retire les accents
+            $str = preg_replace('/\s+/', '', $str); // retire les espaces
+            return $str;
+        };
+
+        $denoNorm = $normalize($deno);
+        $subNorm = $normalize($sub);
+
+        $qb = $this->createQueryBuilder('vu')
+            ->select('vu.nomVU, 
+                        vu.dbo_Autorisation_libAbr, 
+                        vu.dbo_ClasseATC_libAbr, 
+                        sa.nomSubstance, 
+                        vu.codeVU, 
+                        vu.codeCIS, 
+                        vu.libRechDenomination, 
+                        sa.libRechSubstance')
+            ->distinct()
+            ->innerJoin('App\Entity\SAVU', 'sa', 'WITH', 'vu.codeVU = sa.codeVU')
+            ->where('vu.dbo_StatutSpeci_libAbr = :statut')
+            ->setParameter('statut', 'Actif')
+            ->orderBy('vu.nomVU', 'ASC');
+
+        if ($denoNorm) {
+            $qb->andWhere('vu.libRechDenomination LIKE :deno')
+                ->setParameter('deno', '%' . $denoNorm . '%');
+        }
+
+        if ($subNorm) {
+            // Sous-requête pour le IN
+            $subQb = $this->getEntityManager()->createQueryBuilder()
+                ->select('DISTINCT sa2.codeVU')
+                ->from('App\Entity\SAVU', 'sa2')
+                ->where('sa2.libRechSubstance LIKE :sub');
+            $qb->andWhere($qb->expr()->in('vu.codeVU', $subQb->getDQL()))
+                ->setParameter('sub', '%' . $subNorm . '%');
+        }
+
+
+        // dump($qb->getQuery()->getDQL());
+        // dump($qb->getQuery()->getSQL());
+
+        return $qb->getQuery()->getResult();
+    }
+
+
     //    /**
     //     * @return VUUtil[] Returns an array of VUUtil objects
     //     */

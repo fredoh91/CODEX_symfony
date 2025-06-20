@@ -25,7 +25,8 @@ Encore
     .addEntry('app', './assets/app.js')
 
     .addStyleEntry('styles', './assets/styles/app.scss')
-    .addStyleEntry('artdeco', './assets/styles/artdeco.scss')
+    .addStyleEntry('artdeco_css', './assets/styles/artdeco.scss')
+    .addStyleEntry('rechlabo_css', './assets/styles/rechlabo.scss')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
