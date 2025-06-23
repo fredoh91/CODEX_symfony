@@ -19,7 +19,34 @@ class RechLaboTypeForm extends AbstractType
             ->add('denomination', TextType::class, [
                 'label' => 'Dénomination',
             ])
-            ->add('recherche', SubmitType::class)
+            ->add(
+                'recherche',
+                SubmitType::class,
+                [
+                    'attr' => ['class' => 'btn btn-primary btn-sm m-1'],
+                    'label' => 'Rechercher',
+                    'row_attr' => ['id' => 'recherche'],
+                ]
+            )
+        
+            ->add(
+                'reset',
+                SubmitType::class,
+                [
+                    'attr' => ['class' => 'btn btn-primary btn-sm m-1'],
+                    'label' => 'Reset',
+                    'row_attr' => ['id' => 'reset'],
+                ]
+            )
+            ->add(
+                'exportExcel',
+                SubmitType::class,
+                [
+                    'attr' => ['class' => 'btn btn-primary btn-sm m-1'],
+                    'label' => 'Export Excel',
+                    'row_attr' => ['id' => 'exportExcel'],
+                ]
+            )
         ;
     }
 
