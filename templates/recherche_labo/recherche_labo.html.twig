@@ -68,7 +68,7 @@
 								- CodeATC: {{ medic.dbo_ClasseATC_libAbr }}
 								- CodeCIS: {{ medic.codeCIS }}
 								- Type procédure : <strong>{{ medic.dbo_Autorisation_libAbr }}</strong>
-								- Commercialisé : <strong>{{ medic.commercialise ? 'Oui' : 'Non' }}</strong>
+								- Statut de commercialisation : <strong>{{ medic.commercialise ? 'Commercialisé' : 'Non commercialisé ou pas d\'information' }}</strong>
 								
 								<br>
 								<span class="text-muted">Substances: {{ medic.substances|join(', ') }}</span>
