@@ -9,10 +9,18 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use App\Repository\CODEXPresentationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class RechercheLaboController extends AbstractController
 {
+    private $codexPresentationRepository;
+
+    public function __construct(CODEXPresentationRepository $codexPresentationRepository)
+    {
+        $this->codexPresentationRepository = $codexPresentationRepository;
+    }
+    
     #[Route('/recherche_labo', name: 'app_recherche_labo')]
     public function recherche_labo(Request $request, ManagerRegistry $doctrine, ExcelExporter $excelExporter): Response
     {
@@ -83,6 +91,7 @@ final class RechercheLaboController extends AbstractController
                     'codeActeur' => $row['codeActeur'],
                     'libRechDenomination' => $row['libRechDenomination'],
                     'substances' => [],
+                    'commercialise' => $this->codexPresentationRepository->auMoinsUnePresentationCommercialisee($row['codeVU']),
                 ];
             }
             $medics[$cis]['substances'][] = $row['nomSubstance'];

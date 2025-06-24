@@ -28,12 +28,14 @@ class ExcelExporter
         $sheet->setCellValue('B1', 'Substance(s)');
         $sheet->setCellValue('C1', 'Exploitant');
         $sheet->setCellValue('D1', 'Titulaire');
+        $sheet->setCellValue('E1', 'Statut commercialisation');
 
         $columnWidths = [
             'A' => 60,  // Dénomination
             'B' => 85,  // Substance
             'C' => 60,  // Exploitant
             'D' => 60,  // Titulaire
+            'E' => 38,  // Statut commercialisation
         ];
         foreach ($columnWidths as $column => $width) {
             $sheet->getColumnDimension($column)->setWidth($width);
@@ -49,6 +51,8 @@ class ExcelExporter
             $sheet->setCellValue('B' . $row, $substancesStr);
             $sheet->setCellValue('C' . $row, $medic['nomActeurLong']);
             $sheet->setCellValue('D' . $row, $medic['nomContactLibra']);
+            // $sheet->setCellValue('E' . $row, $medic['commercialise']);
+            $sheet->setCellValue('E' . $row, $medic['commercialise'] ? 'Commercialisé' : 'Non commercialisé ou pas d\'information');
 
             // Ajustement de la hauteur de ligne
             $sheet->getRowDimension($row)->setRowHeight($baseHeight + ($additionalHeight * substr_count($substancesStr, "\n")));
@@ -60,13 +64,17 @@ class ExcelExporter
         // Mise en forme du fichier Excel //
         ////////////////////////////////////
         
-        // On met la premier ligne en gris
-        for($col = 'A'; $col != 'E'; $col++) {
+        // On met la premiere ligne en gris
+        for($col = 'A'; $col != 'F'; $col++) {
             $sheet->getStyle($col . '1')->getFill()
             ->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)
             ->getStartColor()->setARGB('D6DCE1');
         }
         
+        // Centrage horizontal et vertical des titres
+        $sheet->getStyle('A1:E1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+        $sheet->getStyle('A1:E1')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER);
+
         // Ajout du filtre automatique
         $sheet->setAutoFilter(
             $sheet->calculateWorksheetDimension()

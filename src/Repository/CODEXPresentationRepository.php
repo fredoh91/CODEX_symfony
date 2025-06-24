@@ -18,6 +18,27 @@ class CODEXPresentationRepository extends ServiceEntityRepository
         parent::__construct($registry, CODEXPresentation::class);
     }
 
+
+
+    public function auMoinsUnePresentationCommercialisee(string $codeVU): bool
+    {
+        $result = $this->createQueryBuilder('cp')
+            ->select('cp.infoCommCourt')
+            ->where('cp.codeVU = :codeVU')
+            ->setParameter('codeVU', $codeVU)
+            ->getQuery()
+            ->getResult();
+
+        foreach ($result as $row) {
+            if ($row['infoCommCourt'] === 'Commercialisation') {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    
     //    /**
     //     * @return CODEXPresentation[] Returns an array of CODEXPresentation objects
     //     */

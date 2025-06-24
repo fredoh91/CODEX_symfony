@@ -6,8 +6,10 @@ namespace App\Entity;
 // use App\Codex\Repository\CODEXPresentationRepository;
 use App\Repository\CODEXPresentationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Index;
 
 #[ORM\Entity(repositoryClass: CODEXPresentationRepository::class)]
+#[Index(name: "idx_code_vu", fields: ["codeVU"])]
 class CODEXPresentation
 {
     #[ORM\Id]
