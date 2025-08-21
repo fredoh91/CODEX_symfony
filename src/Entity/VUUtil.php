@@ -117,6 +117,9 @@ class VUUtil
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $libRechDenomination = null;
 
+    #[ORM\Column(length: 8, nullable: true)]
+    private ?string $codeVUPrinceps = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -502,6 +505,18 @@ class VUUtil
     public function setLibRechDenomination(?string $libRechDenomination): static
     {
         $this->libRechDenomination = $libRechDenomination;
+
+        return $this;
+    }
+
+    public function getCodeVUPrinceps(): ?string
+    {
+        return $this->codeVUPrinceps;
+    }
+
+    public function setCodeVUPrinceps(?string $codeVUPrinceps): static
+    {
+        $this->codeVUPrinceps = $codeVUPrinceps;
 
         return $this;
     }
