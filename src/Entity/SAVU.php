@@ -76,6 +76,9 @@ class SAVU
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $libRechDenomination = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nomProduit = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -293,6 +296,18 @@ class SAVU
     public function setLibRechDenomination(?string $libRechDenomination): static
     {
         $this->libRechDenomination = $libRechDenomination;
+
+        return $this;
+    }
+
+    public function getNomProduit(): ?string
+    {
+        return $this->nomProduit;
+    }
+
+    public function setNomProduit(?string $nomProduit): static
+    {
+        $this->nomProduit = $nomProduit;
 
         return $this;
     }
