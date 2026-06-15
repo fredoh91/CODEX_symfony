@@ -36,6 +36,9 @@ class EIMedDRACodeCis
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $libelleBrut = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $numEI = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +124,18 @@ class EIMedDRACodeCis
     public function setLibelleBrut(?string $libelleBrut): static
     {
         $this->libelleBrut = $libelleBrut;
+
+        return $this;
+    }
+
+    public function getNumEI(): ?int
+    {
+        return $this->numEI;
+    }
+
+    public function setNumEI(?int $numEI): static
+    {
+        $this->numEI = $numEI;
 
         return $this;
     }
